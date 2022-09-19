@@ -1,14 +1,32 @@
 import FixedAsset from "../models/FixedAsset"
+import APIFeatures from "../utils/apiFeatures"
 
 //GET all Fixed Assets
  
 const allFixedAssets = async (req, res) => {
+
+    
+
     try {
-        const fixedAssets = await FixedAsset.find()
+
+        const resultsperPage = 4
+        const fixedAssetsCount = await FixedAsset.countDocuments()
+
+        const apiFeatures = new APIFeatures(FixedAsset.find(), req.query)
+        .search()
+        .filter()
+
+        let fixedAssets = await apiFeatures.query
+        let filteredFixedAssetsCount = fixedAssets.length;
+
+        apiFeatures.pagination(resultsperPage)
+        fixedAssets = await apiFeatures.query.clone();
   
         res.status(200).json({
             success: true,
-            count:fixedAssets.length,
+            fixedAssetsCount,
+            resultsperPage,
+            filteredFixedAssetsCount,
             fixedAssets
         })
   

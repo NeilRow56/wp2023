@@ -37,10 +37,10 @@ const fixedAssetSchema = new mongoose.Schema(
 			required: [false, 'Please enter asset category'],
 			enum: {
 				values: [
-					'Plant & Equipment',
+					'Plant and Equipment',
 					'Vehicles',
 					'Office Equipment',
-					'Furniture & Fixtures',
+					'Furniture and Fixtures',
 					'Freehold Property',
 					'Leasehold Property',
 					'Investment Property',
