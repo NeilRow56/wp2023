@@ -3,7 +3,7 @@ import NextAuth from "next-auth"
 import bcryptjs from 'bcryptjs';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import User from '../../../models/userModel'
-import dbConnect from '../../../lib/dbConnect'
+import db from '../../../lib/dbConnect'
 
 
 
@@ -27,7 +27,7 @@ export default NextAuth({
     providers: [
         CredentialsProvider({
           async authorize(credentials) {
-            await dbConnect();
+            await db.dbConnect();
             const user = await User.findOne({
               email: credentials.email,
             });

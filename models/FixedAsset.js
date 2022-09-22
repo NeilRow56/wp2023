@@ -21,9 +21,26 @@ const fixedAssetSchema = new mongoose.Schema(
 			type: Number,
 			required: [true, 'Please enter asset cost'],
             maxlength: [20, "Asset cost cannot exceed 20 characters"],
-            default:0.0
+            default:0
 		},
 		valuation: {
+			type: Number,
+            required:false,
+			default: 0,
+		},
+		additionCost: {
+			type: Number,
+			required: [false, 'Please enter asset cost'],
+            maxlength: [20, "Asset cost cannot exceed 20 characters"],
+            default:0
+		},
+		disposalCost: {
+			type: Number,
+			required: [false, 'Please enter asset cost'],
+            maxlength: [20, "Asset disposal cannot exceed 20 characters"],
+            default:0
+		},
+		valuationDispodal: {
 			type: Number,
             required:false,
 			default: 0,
@@ -50,7 +67,7 @@ const fixedAssetSchema = new mongoose.Schema(
 				message: 'Please select correct category for asset',
 			},
 		},
-		writtenDownValue: {
+		writtenDownValueBfwd: {
 			type: Number,
 			required: true,
 		},
@@ -72,6 +89,10 @@ const fixedAssetSchema = new mongoose.Schema(
 			type: Date,
 		},
 		disposalProceeds: {
+			type: Number,
+			default: 0,
+		},
+		disposalDepreciation: {
 			type: Number,
 			default: 0,
 		},

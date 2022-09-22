@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import User from '../../../models/userModel'
-import dbConnect from '../../../lib/dbConnect'
+import db from '../../../lib/dbConnect'
 
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -20,7 +20,7 @@ async function handler(req, res) {
     return;
   }
 
-  await dbConnect();
+  await db.dbConnect();
 
   const existingUser = await User.findOne({ email: email });
   if (existingUser) {

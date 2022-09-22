@@ -1,7 +1,7 @@
 import { getSession } from 'next-auth/react';
 import bcryptjs from 'bcryptjs';
 import User from '../../../models/userModel';
-import dbConnect from '../../../lib/dbConnect';
+import db from '../../../lib/dbConnect'
 
 async function handler(req, res) {
   if (req.method !== 'PUT') {
@@ -28,7 +28,7 @@ async function handler(req, res) {
     return;
   }
 
-  await dbConnect();
+  await db.dbConnect();
   const toUpdateUser = await User.findById(user._id);
   toUpdateUser.name = name;
   toUpdateUser.email = email;

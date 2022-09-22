@@ -1,10 +1,10 @@
-import dbConnect from '../../lib/dbConnect'
+import db from '../../lib/dbConnect'
 import User from '../../models/userModel';
 import data from '../../utils/data';
 
 
 const handler = async (req, res) => {
-  await dbConnect();
+  await db.dbConnect();
   await User.deleteMany();
   await User.insertMany(data.users);
    

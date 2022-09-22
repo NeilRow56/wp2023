@@ -1,5 +1,5 @@
 import nc from 'next-connect'
-import dbConnect from '../../../lib/dbConnect'
+import db from '../../../lib/dbConnect'
 
 import { getSingleFixedAsset, updateSingleFixedAsset, deleteSingleFixedAsset } from '../../../controllers/fixedAssetControllers'
 
@@ -7,7 +7,7 @@ import onError from '../../../middlewares/errors'
 
 const handler = nc({ onError })
 
-dbConnect()
+db.dbConnect()
 
 handler.get(getSingleFixedAsset)
 
